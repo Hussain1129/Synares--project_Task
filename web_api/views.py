@@ -3,7 +3,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from .serializers import StudentSerializer, Urlserializer
-from .forms import Loginform
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth import authenticate, login
 from .models import WebUrl, Urldetail
@@ -32,19 +31,23 @@ class Addlink(APIView):
     def get(self, request):
         all_url = WebUrl.objects.all()
         serializer = Urlserializer(all_url, many=True)
+        print(serializer.data)
         return Response(serializer.data)
 
 
 class GetLinks(View):
     def get(self, request):
         getall = WebUrl.objects.all()
-        return render(request, "web/linkpage.html", {"alllinks": getall})
+        return render(request, "web/linkpage.html", {"all_links": getall})
 
 
 def countlink(request, id):
     url = WebUrl.objects.get(id=id)
+    print(url)
+    print("------------------------------------")
     db_url, created = Urldetail.objects.get_or_create(
         weburls=url, userurl=request.user)
+    print(created)   # return boolean value
     if not created:
         db_url.counts += 1
     db_url.save()
