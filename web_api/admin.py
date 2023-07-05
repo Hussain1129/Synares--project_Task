@@ -6,4 +6,8 @@ from .models import StudentModel, WebUrl, Urldetail
 
 admin.site.register(StudentModel)
 admin.site.register(WebUrl)
-admin.site.register(Urldetail)
+
+
+@admin.register(Urldetail)
+class Urldetailadmin(admin.ModelAdmin):
+    list_display = ["id", "weburls", "counts", "userurl", "updated"]

@@ -29,5 +29,5 @@ class Urldetail(models.Model):
                                 on_delete=models.CASCADE)
     updated = models.DateTimeField(default=None)
 
-    def __str__(self):
-        return f'{self.weburls}'
+    # def __str__(self):
+    #     return f'{self.weburls}----{self.counts}----{self.updated}'
