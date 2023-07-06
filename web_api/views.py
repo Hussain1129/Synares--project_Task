@@ -52,4 +52,4 @@ def countlink(request, id):
         db_url.counts += 1
     db_url.save()
 
-    return HttpResponse("url gettted")
+    return render(request, "web/showlink.html", {"link": url})

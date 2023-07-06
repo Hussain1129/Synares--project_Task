@@ -8,7 +8,9 @@
   <body>
     <h1>This is link page</h1>
     {% for val in all_links %}
-    <a href="{% url 'countlink' val.id %}"> {{val}} <br /> </a>
+    <a href="{% url 'countlink' val.id %}">
+      {{val}} <br />
+    </a>
     {% endfor %}
   </body>
 </html>
